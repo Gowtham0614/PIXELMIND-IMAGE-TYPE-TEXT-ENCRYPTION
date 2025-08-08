@@ -1,148 +1,171 @@
-# 🔐 PixelMind – Image-Based File Encryption System
+# 🔐 PixelMind - Image Type Encryption System
 
-**PixelMind** is a next-generation encryption tool that converts sensitive text files into seemingly harmless images and compiles them into secure PDFs.  
-Leveraging advanced steganography-inspired logic, PixelMind ensures your data stays hidden in plain sight while remaining easily retrievable.
+## 📖 Project Overview
 
----
+PixelMind is an advanced text-to-image encryption system designed to transform sensitive text files into innocent-looking images and secure PDF documents. This innovative application provides a powerful and user-friendly method to protect confidential information through unique steganography-inspired encryption techniques.
 
-## 📌 Highlights
+## 🚀 Live Demonstration
 
-- 🔒 **Text-to-Image Encryption** – Hide your text securely within images  
-- 📁 **Multi-File Support** – Encrypt multiple files in one go  
-- 📄 **PDF Compilation** – Bundle encrypted images into secure PDFs  
-- 🔓 **Secure Decryption** – Retrieve original content using authentication  
-- 🌐 **User-Friendly Web Interface** – Clean and intuitive interface for ease of use  
-- 🧾 **Format Flexibility** – Compatible with common text formats (.txt, .md, .log, etc.)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](https://pixelminds.pythonanywhere.com/)
 
----
+## ✨ Key Features
 
-## 🧰 Tech Stack
+- **Text-to-Image Encryption**: Seamlessly convert text files into encrypted images
+- **Multi-File Support**: Encrypt multiple text files simultaneously
+- **PDF Compilation**: Organize encrypted images into secure PDF documents
+- **Secure Decryption**: Easily retrieve original files with proper credentials
+- **Web Interface**: Intuitive and user-friendly application
+- **Multi-Format Compatibility**: Supports various text file formats
 
-- **Backend**: Flask (Python)  
-- **Database**: MongoDB  
-- **Encryption & Processing**: Pillow, PyMuPDF  
-- **AI Integration**: Groq LLaMA 3.3-70B Versatile  
-- **Deployment**: Localhost (Flask Dev Server)
+## 🛠 Technology Stack
 
----
+### Prerequisites
 
-## ⚙️ Setup & Installation
+Before installation, ensure you have the following technologies installed:
 
-### ✅ Prerequisites
+#### 1. Python
+- Version: 3.6+ recommended
+- Download: [Python Official Website](https://www.python.org/downloads/)
+- Verification:
+  ```bash
+  python --version
+  ```
 
-- Python 3.6 or above  
-- MongoDB 4.4+  
-- `pip` and `virtualenv` (recommended)
+#### 2. MongoDB
+- Version: 4.4+ recommended
+- Download: [MongoDB Official Website](https://www.mongodb.com/try/download/community)
+- Installation Steps:
+  - Windows: Download and run the MongoDB installer
+  - macOS: Use Homebrew `brew tap mongodb/brew && brew install mongodb-community`
+  - Linux: Follow official MongoDB documentation for your distribution
 
----
+#### 3. pip (Python Package Manager)
+- Typically installed with Python
+- Verification:
+  ```bash
+  pip --version
+  ```
 
-### 📥 Installation Steps
-# 1. Clone the repository
+#### 4. Virtual Environment (Recommended)
+- Install virtualenv:
+  ```bash
+  pip install virtualenv
+  ```
+
+## 🚀 Installation Guide
+
+### 1. Clone the Repository
+```bash
 git clone https://github.com/UnisysUIP/2025-File-encryption.git
 cd 2025-File-encryption
+```
 
-# 2. Install dependencies
+### 2. Install Dependencies
+```bash
 pip install -r requirements.txt
-🔑 Generate & Configure Environment
-python
-Copy
-Edit
-# 3. Generate a secret key
+```
+
+### 3. Create Secret key by running the following code and paste it in the .env file:
+```bash
 import secrets
-print(secrets.token_hex(32))  # Copy this value
-Then, create a .env file in the root directory and add the following:
+print(secrets.token_hex(32))  # Generates a 64-character hexadecimal string
+```
+### 4. Environment Configuration
 
-env
-Copy
-Edit
-# Flask Secret Key
-SECRET_KEY=your_generated_secret_key
+#### Create .env File
+Create a `.env` file in the project root with the following configurations:
 
-# MongoDB Connection
+```plaintext
+# Flask Secret Key (Use a strong, unique value)
+SECRET_KEY=your_very_secret_and_unique_key
+
+# MongoDB Connection String
 MONGODB_URI=mongodb://localhost:27017/
 
-# Groq API for LLaMA3-70B
-CHATBOT_API_KEY=your_groq_api_key
-API_URL=https://api.groq.com/openai/v1/chat/completions
+# Get the Key from Groq cloud - llama3.3-70B-Versatile -- [link](https://console.groq.com/keys)
+#API key
+CHATBOT_API_KEY= your_groq_llama3.3-70B-Versatile_API_Key
 
-# Default Admin Login (change in production)
+
+# Default Admin Credentials (Change in production)
 DFAULT_USERNAME=guest
 DFAULT_PASSWORD=guest
-▶️ Run the Application
-bash
-python run.py
-Access in browser:
-📍 http://localhost:5000
 
-📁 Project Structure
-````bash
-Copy
-Edit
+API_URL=https://api.groq.com/openai/v1/chat/completions
+
+```
+
+
+### 5. Run the Application
+```bash
+python run.py
+```
+
+### 6. Access the Application
+Open your web browser and navigate to:
+```
+http://localhost:5000
+```
+
+## 📂 Project Structure
+
+```
 PixelMind/
-├── app.py                  # Flask app entry point
-├── database.py             # MongoDB interaction
-├── image_operations.py     # Image encryption/decryption logic
-├── pdf_operations.py       # PDF generation logic
-├── chatbot_service.py      # AI assistant (Groq integration)
 │
-├── templates/              # HTML templates
+├── app.py                 # Main Flask application
+├── database.py            # Database interaction module
+├── image_operations.py    # Image encryption/decryption logic
+├── pdf_operations.py      # PDF generation module
+├── chatbot_service.py     # Chatbot interaction service
+│
+├── templates/             # HTML templates
 │   ├── login.html
 │   ├── register.html
 │   └── dashboard.html
+│   └── other html pages
 │
-├── static/                 # CSS/JS assets
-├── uploads/                # Temporary file storage
-├── .env                    # Environment variables
-└── requirements.txt        # Python dependencies
-````
-🔐 Default Login
-Use these default credentials to log in for testing:
+├── static/                # Static assets
+│   ├── css/
+│   └── js/
+│
+├── uploads/               # Temporary file storage
+├── .env                   # Environment configuration
+└── requirements.txt       # Project dependencies
+```
 
-makefile
-Copy
-Edit
-Username: guest
-Password: guest
-🛡 Security Notice
-⚠️ This project is intended for educational/demo purposes only.
+## 🔐 Login Credentials
 
-Do not use in production without proper security enhancements
+- **Default Credentials (credential bypass)**:
+  - Username: `guest`
+  - Password: `guest`
+## 🛡️ Security Considerations
 
-Always use HTTPS for deployments
+- Designed for educational purposes
+- Not suitable for military-grade security
+- Implement HTTPS in production
+- Regularly update dependencies
+- Use strong, unique passwords
+- Consider additional authentication mechanisms
 
-Use strong credentials and secure MongoDB with authentication
+## 🔄 Contribution Guidelines
 
-Rotate secrets and API keys regularly
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-Consider adding 2FA and access controls
 
-🔄 Contribution Guide
-Fork the repository
+## 👥 Contributors
 
-Create a feature branch (git checkout -b feature/your-feature)
+- Mohammed Faisar A - [MdFaisar]
+- Ram Kumar R - [rkcoder7]
+- Gowtham K - [Gowtham0614]
+- Rakshita K - [Rakshita-31]
 
-Commit your changes
+## 🙏 Acknowledgments
 
-Push to your fork (git push origin feature/your-feature)
-
-Submit a Pull Request
-
-👨‍💻 Contributors
-Mohammed Faisar A – MdFaisar
-
-Ram Kumar R – rkcoder7
-
-Gowtham K – Gowtham0614
-
-Rakshita K – Rakshita-31
-
-🙌 Acknowledgments
-Flask
-
-Pillow (PIL)
-
-PyMuPDF
-
-MongoDB
-
-Groq Cloud – LLaMA 3.3-70B
+- Flask Web Framework
+- Pillow Image Processing
+- PyMuPDF
+- MongoDB
